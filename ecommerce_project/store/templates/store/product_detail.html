@@ -1,0 +1,184 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | ShopSphere</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="container nav-content">
+
+        <a href="/" class="logo">
+            Shop<span>Sphere</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#products">Products</a>
+            <a href="/#products">Categories</a>
+            <a href="/about/">About</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="/login/" class="login-btn">
+                Login
+            </a>
+
+           <a href="{% url 'cart' %}" class="cart-btn">
+    🛒 Cart
+    <span class="cart-count">
+        {{ request.session.cart|length }}
+    </span>
+</a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="products-section">
+
+    <div class="container">
+
+        <a href="/" style="color:#64748b;">
+            ← Back to Products
+        </a>
+
+
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:60px;
+            margin-top:40px;
+            align-items:center;
+        ">
+
+            <!-- Product Image -->
+
+            <div class="product-image" style="height:450px; border-radius:14px;">
+
+                {% if product.image_url %}
+
+                   <img
+    src="{{ product.image_url }}"
+    alt="{{ product.name }}"
+    class="product-detail-image"
+>
+
+                {% else %}
+
+                    <div class="image-placeholder">
+                        🛍️
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Product Information -->
+
+            <div>
+
+                <p class="category">
+                    {{ product.category }}
+                </p>
+
+                <h1 style="font-size:42px; margin-bottom:15px;">
+                    {{ product.name }}
+                </h1>
+
+                <h2 style="font-size:30px; margin-bottom:20px;">
+                    ₹{{ product.price }}
+                </h2>
+
+                <p style="
+                    color:#64748b;
+                    line-height:1.7;
+                    margin-bottom:20px;
+                ">
+                    {{ product.description }}
+                </p>
+
+
+                <p style="margin-bottom:25px;">
+                    <strong>Available Stock:</strong>
+                    {{ product.stock }}
+                </p>
+
+
+                {% if product.stock > 0 %}
+
+                    <a
+                 href="{% url 'add_to_cart' product.id %}"
+                class="shop-btn"
+                   >
+          🛒 Add to Cart
+</a>
+
+<a href="{% url 'buy_now' product.id %}" class="shop-btn">
+    Order Now
+</a>
+
+                {% else %}
+
+                    <button
+                        class="shop-btn"
+                        disabled
+                        style="background:#94a3b8;"
+                    >
+                        Out of Stock
+                    </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div>
+                <h3>ShopSphere</h3>
+                <p>
+                    A modern online shopping experience.
+                </p>
+            </div>
+
+            <div>
+                <p>© 2026 ShopSphere</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

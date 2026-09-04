@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed | ShopSphere</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="container nav-content">
+
+        <a href="/" class="logo">
+            Shop<span>Sphere</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#products">Products</a>
+            <a href="/about/">About</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<section class="products-section">
+
+    <div class="container">
+
+        <div style="
+            max-width:650px;
+            margin:70px auto;
+            text-align:center;
+            padding:50px 30px;
+            border:1px solid #e5e7eb;
+            border-radius:18px;
+            background:white;
+        ">
+
+            <div style="font-size:60px;">
+                ✓
+            </div>
+
+            <p class="eyebrow">
+                ORDER CONFIRMED
+            </p>
+
+            <h1>
+                Thank You For Your Order!
+            </h1>
+
+            <p style="
+                color:#64748b;
+                margin:15px 0 25px;
+            ">
+                Your order has been successfully placed.
+            </p>
+
+            <h3>
+                Order #{{ order.id }}
+            </h3>
+
+            <p style="
+                margin-top:10px;
+                color:#64748b;
+            ">
+                Total: ₹{{ order.total_amount }}
+            </p>
+
+            <p style="
+                margin-top:8px;
+                color:#64748b;
+            ">
+                Status: {{ order.status }}
+            </p>
+
+            <br>
+
+            <a href="/" class="shop-btn">
+                Continue Shopping →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

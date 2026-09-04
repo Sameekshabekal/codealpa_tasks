@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | ShopSphere</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="container nav-content">
+
+        <a href="/" class="logo">
+            Shop<span>Sphere</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#products">Products</a>
+            <a href="#">Categories</a>
+            <a href="/about/">About</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<section class="products-section">
+
+    <div class="container">
+
+        <div style="max-width: 450px; margin: 40px auto;">
+
+            <p class="eyebrow">WELCOME BACK</p>
+
+            <h1>Login to your account</h1>
+
+            <p style="color: #64748b; margin: 12px 0 30px;">
+                Sign in to continue shopping.
+            </p>
+
+           <form method="POST">
+
+    {% csrf_token %}
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <label>Username</label>
+
+    <input
+        type="text"
+        name="username"
+        placeholder="Enter your username"
+        required
+    >
+
+    <label>Password</label>
+
+    <input
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+    >
+
+    <button type="submit" class="shop-btn">
+        Login
+    </button>
+
+</form>
+
+<p style="margin-top:20px; color:#64748b;">
+    Don't have an account?
+    <a href="/register/" style="color:#2563eb;">
+        Create an account
+    </a>
+</p>
+
+
+
+
+            <p style="margin-top:20px; color:#64748b;">
+                Don't have an account?
+                <a href="#" style="color:#2563eb;">
+                    Create an account
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

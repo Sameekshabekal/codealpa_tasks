@@ -1,0 +1,132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Cart | ShopSphere</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="container nav-content">
+
+        <a href="/" class="logo">
+            Shop<span>Sphere</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#products">Products</a>
+            <a href="/#products">Categories</a>
+            <a href="/about/">About</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="/login/" class="login-btn">Login</a>
+            <a href="/cart/" class="cart-btn">🛒 Cart</a>
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="products-section">
+
+    <div class="container">
+
+        <p class="eyebrow">YOUR SHOPPING CART</p>
+
+        <h1>Shopping Cart</h1>
+
+        {% if items %}
+
+            <div style="margin-top:30px;">
+
+                {% for item in items %}
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        padding:20px;
+                        margin-bottom:15px;
+                        border:1px solid #e5e7eb;
+                        border-radius:12px;
+                        background:white;
+                    ">
+
+                        <div>
+                            <h3>{{ item.product.name }}</h3>
+
+                            <p style="color:#64748b;">
+                                ₹{{ item.product.price }} × {{ item.quantity }}
+                            </p>
+                        </div>
+
+                        <strong>
+                            ₹{{ item.total }}
+                        </strong>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div style="
+                margin-top:30px;
+                padding:25px;
+                border-radius:12px;
+                background:#f8fafc;
+                text-align:right;
+            ">
+
+                <h2>
+                    Total: ₹{{ total }}
+                </h2>
+
+                <br>
+
+                <a href="/checkout/" class="shop-btn">
+                    Proceed to Checkout →
+                </a>
+
+            </div>
+
+        {% else %}
+
+            <div style="
+                text-align:center;
+                padding:70px 20px;
+            ">
+
+                <h2>Your cart is empty 🛒</h2>
+
+                <p style="color:#64748b; margin:15px 0 25px;">
+                    Looks like you haven't added anything yet.
+                </p>
+
+                <a href="/#products" class="shop-btn">
+                    Continue Shopping
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+</body>
+</html>

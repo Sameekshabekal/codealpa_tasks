@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | ShopSphere</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="container nav-content">
+
+        <a href="/" class="logo">
+            Shop<span>Sphere</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#products">Products</a>
+            <a href="#">Categories</a>
+            <a href="/about/">About</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="/login/" class="login-btn">Login</a>
+
+            <a href="#" class="cart-btn">
+                🛒 Cart
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<section class="hero">
+    <div class="container hero-text">
+
+        <p class="eyebrow">ABOUT SHOPSPHERE</p>
+
+        <h1>
+            Shopping made
+            <span>simple.</span>
+        </h1>
+
+        <p>
+            ShopSphere is a modern e-commerce platform designed
+            to make online shopping simple, convenient and enjoyable.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="products-section">
+
+    <div class="container">
+
+        <h2>Our Mission</h2>
+
+        <p style="margin-top: 20px; line-height: 1.8; color: #64748b;">
+            Our goal is to provide customers with a smooth online
+            shopping experience where they can discover products,
+            compare prices, add products to their cart and place
+            orders easily.
+        </p>
+
+    </div>
+
+</section>
+
+</body>
+</html>

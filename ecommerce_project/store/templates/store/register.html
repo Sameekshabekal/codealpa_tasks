@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | ShopSphere</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="container nav-content">
+
+        <a href="/" class="logo">
+            Shop<span>Sphere</span>
+        </a>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/#products">Products</a>
+            <a href="/#products">Categories</a>
+            <a href="/about/">About</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="/login/" class="login-btn">Login</a>
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="products-section">
+
+    <div class="container">
+
+        <div style="max-width:450px; margin:40px auto;">
+
+            <p class="eyebrow">JOIN SHOPSPHERE</p>
+
+            <h1>Create your account</h1>
+
+            <p style="color:#64748b; margin:12px 0 30px;">
+                Create an account to start shopping.
+            </p>
+
+            {% if error %}
+                <p style="color:red; margin-bottom:15px;">
+                    {{ error }}
+                </p>
+            {% endif %}
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Choose a username"
+                    required
+                    style="width:100%; padding:14px; margin:8px 0 20px; border:1px solid #ddd; border-radius:8px;"
+                >
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                    style="width:100%; padding:14px; margin:8px 0 20px; border:1px solid #ddd; border-radius:8px;"
+                >
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                    style="width:100%; padding:14px; margin:8px 0 25px; border:1px solid #ddd; border-radius:8px;"
+                >
+
+                <button
+                    type="submit"
+                    class="shop-btn"
+                    style="border:none; cursor:pointer;"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+            <p style="margin-top:20px; color:#64748b;">
+                Already have an account?
+                <a href="/login/" style="color:#2563eb;">
+                    Login
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
