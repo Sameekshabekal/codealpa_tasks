@@ -1,0 +1,137 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        SocialConnect
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'social/css/style.css' %}"
+    >
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <a
+            href="{% url 'home' %}"
+            class="logo"
+        >
+            SocialConnect
+        </a>
+
+        <div class="nav-links">
+            <button
+        type="button"
+        id="theme-toggle"
+        class="theme-toggle"
+    >
+        🌙 Dark Mode
+    </button>
+
+            {% if user.is_authenticated %}
+
+
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a
+                    href="{% url 'profile' user.username %}"
+                >
+                    Profile
+                </a>
+
+                <a href="{% url 'edit_profile' %}">
+                    Edit Profile
+                </a>
+
+                <form
+                    method="POST"
+                    action="{% url 'logout' %}"
+                    class="logout-form"
+                >
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="nav-button"
+                    >
+                        Logout
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+
+                <a
+                    href="{% url 'register' %}"
+                    class="register-nav"
+                >
+                    Register
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+{% if messages %}
+
+    <div class="messages-container">
+
+        {% for message in messages %}
+
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+
+<script
+    src="{% static 'social/js/script.js' %}"
+></script>
+
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+{% extends "social/base.html" %}
+
+{% block title %}
+Home - SocialConnect
+{% endblock %}
+
+{% block content %}
+
+<div class="page-container">
+
+    {% if user.is_authenticated %}
+
+    <section class="welcome-section">
+
+        <h1>
+            Welcome, {{ user.username }} 👋
+        </h1>
+
+        <p>
+            Share something with the SocialConnect community.
+        </p>
+
+    </section>
+
+
+    <section class="create-post-card">
+
+        <h2>Create a Post</h2>
+
+        <form
+            method="POST"
+            action="{% url 'create_post' %}"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+            <textarea
+                name="content"
+                placeholder="What's on your mind?"
+                rows="4"
+            ></textarea>
+
+
+            <div class="post-actions">
+
+                <label class="file-label">
+
+                    📷 Add Photo / Video
+
+                    <input
+                        type="file"
+                        name="image"
+                        accept="image/*,video/*"
+                    >
+
+                </label>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Publish
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+    {% else %}
+
+    <section class="hero-section">
+
+        <h1>
+            Welcome to SocialConnect
+        </h1>
+
+        <p>
+            Connect, share and interact with people.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="{% url 'register' %}"
+                class="primary-button link-button"
+            >
+                Get Started
+            </a>
+
+            <a
+                href="{% url 'login' %}"
+                class="secondary-button"
+            >
+                Login
+            </a>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <section class="feed">
+
+        <h2 class="section-title">
+            Latest Posts
+        </h2>
+
+
+        {% for post in posts %}
+
+        <article class="post-card">
+
+            <div class="post-header">
+
+                <div>
+
+                    <a
+                        href="{% url 'profile' post.author.username %}"
+                        class="post-author"
+                    >
+                        {{ post.author.username }}
+                    </a>
+
+                    <p class="post-date">
+                        {{ post.created_at|date:"M d, Y · h:i A" }}
+                    </p>
+
+                </div>
+
+
+                {% if user == post.author %}
+
+                <form
+                    method="POST"
+                    action="{% url 'delete_post' post.id %}"
+                    class="delete-form"
+                    data-confirm="Delete this post?"
+                >
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="delete-button"
+                    >
+                        Delete
+                    </button>
+
+                </form>
+
+                {% endif %}
+
+            </div>
+
+
+            {% if post.content %}
+
+            <p class="post-content">
+                {{ post.content }}
+            </p>
+
+            {% endif %}
+
+
+            {% if post.image %}
+
+            {% with file_name=post.image.name|lower %}
+
+                {% if ".mp4" in file_name or ".webm" in file_name or ".mov" in file_name or ".avi" in file_name or ".mkv" in file_name %}
+
+                <video
+                    class="post-video"
+                    controls
+                    preload="metadata"
+                >
+                    <source src="{{ post.image.url }}">
+                    Your browser does not support video playback.
+                </video>
+
+                {% else %}
+
+                <img
+                    src="{{ post.image.url }}"
+                    alt="Post image"
+                    class="post-image"
+                >
+
+                {% endif %}
+
+            {% endwith %}
+
+            {% endif %}
+
+
+            <div class="post-stats">
+
+                <span>
+                    ❤️ {{ post.likes.count }} likes
+                </span>
+
+                <span>
+                    💬 {{ post.comments.count }} comments
+                </span>
+
+            </div>
+
+
+            {% if user.is_authenticated %}
+
+            <div class="post-buttons">
+
+                <form
+                    method="POST"
+                    action="{% url 'toggle_like' post.id %}"
+                >
+
+                    {% csrf_token %}
+
+                    {% if user in post.likes.all %}
+
+                    <button
+                        type="submit"
+                        class="action-button liked"
+                    >
+                        ❤️ Unlike
+                    </button>
+
+                    {% else %}
+
+                    <button
+                        type="submit"
+                        class="action-button"
+                    >
+                        🤍 Like
+                    </button>
+
+                    {% endif %}
+
+                </form>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{% url 'add_comment' post.id %}"
+                class="comment-form"
+            >
+
+                {% csrf_token %}
+
+                <input
+                    type="text"
+                    name="content"
+                    placeholder="Write a comment..."
+                    required
+                >
+
+                <button type="submit">
+                    Comment
+                </button>
+
+            </form>
+
+            {% endif %}
+
+
+            <div class="comments">
+
+                {% for comment in post.comments.all %}
+
+                <div class="comment">
+
+                    <div>
+
+                        <a
+                            href="{% url 'profile' comment.author.username %}"
+                            class="comment-author"
+                        >
+                            {{ comment.author.username }}
+                        </a>
+
+                        <span>
+                            {{ comment.content }}
+                        </span>
+
+                    </div>
+
+
+                    {% if user == comment.author %}
+
+                    <form
+                        method="POST"
+                        action="{% url 'delete_comment' comment.id %}"
+                        class="delete-form"
+                        data-confirm="Delete this comment?"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="comment-delete"
+                        >
+                            ×
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                </div>
+
+                {% empty %}
+
+                <p class="no-comments">
+                    No comments yet.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="empty-state">
+
+            <h3>
+                No posts yet
+            </h3>
+
+            <p>
+                Be the first person to share something!
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</div>
+
+{% endblock %}

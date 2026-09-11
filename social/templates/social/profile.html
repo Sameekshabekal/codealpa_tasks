@@ -1,0 +1,180 @@
+{% extends "social/base.html" %}
+
+{% block title %}
+{{ profile_user.username }} - SocialConnect
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <section class="profile-card">
+
+        <div class="profile-picture-container">
+
+            {% if profile_obj.profile_picture %}
+
+            <img
+                src="{{ profile_obj.profile_picture.url }}"
+                alt="Profile picture"
+                class="profile-picture"
+            >
+
+            {% else %}
+
+            <div class="profile-placeholder">
+                {{ profile_user.username|first|upper }}
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="profile-info">
+
+            <h1>
+                {{ profile_user.username }}
+            </h1>
+
+            {% if profile_obj.bio %}
+
+            <p class="bio">
+                {{ profile_obj.bio }}
+            </p>
+
+            {% else %}
+
+            <p class="bio">
+                No bio added yet.
+            </p>
+
+            {% endif %}
+
+
+            <div class="profile-stats">
+
+                <div>
+                    <strong>
+                        {{ posts.count }}
+                    </strong>
+                    <span>Posts</span>
+                </div>
+
+                <div>
+                    <strong>
+                        {{ followers_count }}
+                    </strong>
+                    <span>Followers</span>
+                </div>
+
+                <div>
+                    <strong>
+                        {{ following_count }}
+                    </strong>
+                    <span>Following</span>
+                </div>
+
+            </div>
+
+
+            {% if user == profile_user %}
+
+            <a
+                href="{% url 'edit_profile' %}"
+                class="primary-button link-button"
+            >
+                Edit Profile
+            </a>
+
+            {% else %}
+
+            <form
+                method="POST"
+                action="{% url 'toggle_follow' profile_user.username %}"
+            >
+
+                {% csrf_token %}
+
+                {% if is_following %}
+
+                <button
+                    type="submit"
+                    class="secondary-button"
+                >
+                    Unfollow
+                </button>
+
+                {% else %}
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Follow
+                </button>
+
+                {% endif %}
+
+            </form>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <section class="profile-posts">
+
+        <h2>
+            {{ profile_user.username }}'s Posts
+        </h2>
+
+
+        {% for post in posts %}
+
+        <article class="post-card">
+
+            <p class="post-date">
+                {{ post.created_at|date:"M d, Y · h:i A" }}
+            </p>
+
+            {% if post.content %}
+
+            <p class="post-content">
+                {{ post.content }}
+            </p>
+
+            {% endif %}
+
+
+            {% if post.image %}
+
+            <img
+                src="{{ post.image.url }}"
+                alt="Post image"
+                class="post-image"
+            >
+
+            {% endif %}
+
+        </article>
+
+        {% empty %}
+
+        <div class="empty-state">
+
+            <h3>
+                No posts yet
+            </h3>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</div>
+
+{% endblock %}

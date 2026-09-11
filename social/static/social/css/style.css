@@ -1,0 +1,807 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.nav-button {
+    border: none;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.register-nav {
+    padding: 8px 15px;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+}
+
+
+/* MESSAGES */
+
+.messages-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.message {
+    padding: 12px 15px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+
+/* MAIN */
+
+.page-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.welcome-section {
+    margin-bottom: 25px;
+}
+
+.welcome-section h1 {
+    margin-bottom: 5px;
+}
+
+.welcome-section p {
+    color: #777;
+}
+
+
+/* HERO */
+
+.hero-section {
+    text-align: center;
+    background: white;
+    padding: 70px 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.hero-section h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* BUTTONS */
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.primary-button {
+    background: #222;
+    color: white;
+}
+
+.secondary-button {
+    background: #e9ecef;
+    color: #222;
+}
+
+.link-button {
+    text-align: center;
+}
+
+
+/* AUTH */
+
+.auth-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+.auth-card h1 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.auth-form input,
+.auth-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8dce2;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.auth-form .primary-button {
+    width: 100%;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.auth-footer a {
+    font-weight: bold;
+}
+
+
+/* CREATE POST */
+
+.create-post-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.create-post-card h2 {
+    margin-bottom: 15px;
+}
+
+.create-post-card textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.file-label {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.file-label input {
+    display: none;
+}
+
+
+/* FEED */
+
+.section-title {
+    margin-bottom: 18px;
+}
+
+.post-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.post-author {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.post-date {
+    color: #888;
+    font-size: 13px;
+}
+
+.post-content {
+    margin: 18px 0;
+    white-space: pre-wrap;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.post-stats {
+    display: flex;
+    gap: 20px;
+    color: #777;
+    font-size: 14px;
+    margin-top: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-buttons {
+    margin-top: 12px;
+}
+
+.action-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.liked {
+    font-weight: bold;
+}
+
+
+/* COMMENTS */
+
+.comment-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.comment-form input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.comment-form button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.comments {
+    margin-top: 15px;
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.comment-author {
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.comment-delete {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.no-comments {
+    color: #999;
+    font-size: 14px;
+}
+
+
+/* DELETE */
+
+.delete-button {
+    border: none;
+    background: none;
+    color: #c62828;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+/* PROFILE */
+
+.profile-container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-picture-container {
+    flex-shrink: 0;
+}
+
+.profile-picture,
+.profile-placeholder {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+
+.profile-picture {
+    object-fit: cover;
+}
+
+.profile-placeholder {
+    background: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h1 {
+    margin-bottom: 8px;
+}
+
+.bio {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 20px;
+}
+
+.profile-stats div {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-stats strong {
+    font-size: 20px;
+}
+
+.profile-stats span {
+    color: #777;
+    font-size: 14px;
+}
+
+.profile-posts h2 {
+    margin-bottom: 20px;
+}
+
+
+/* EMPTY */
+
+.empty-state {
+    background: white;
+    text-align: center;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.empty-state p {
+    color: #777;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-section h1 {
+        font-size: 28px;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-stats {
+        justify-content: center;
+    }
+
+    .post-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .comment-form {
+        flex-direction: column;
+    }
+
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+
+.theme-toggle {
+    border: 1px solid #d8dce2;
+    background: #ffffff;
+    color: #222;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.theme-toggle:hover {
+    opacity: 0.8;
+}
+
+
+/* DARK MODE - MAIN */
+
+body.dark-mode {
+    background: #121212;
+    color: #f1f1f1;
+}
+
+
+/* DARK MODE - NAVBAR */
+
+body.dark-mode .navbar {
+    background: #1e1e1e;
+    border-bottom-color: #333;
+}
+
+body.dark-mode .theme-toggle {
+    background: #2a2a2a;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+
+/* DARK MODE - TEXT */
+
+body.dark-mode .welcome-section p,
+body.dark-mode .hero-section p,
+body.dark-mode .auth-subtitle,
+body.dark-mode .auth-footer,
+body.dark-mode .post-date,
+body.dark-mode .post-stats,
+body.dark-mode .bio,
+body.dark-mode .profile-stats span,
+body.dark-mode .empty-state p,
+body.dark-mode .no-comments {
+    color: #b8b8b8;
+}
+
+
+/* DARK MODE - CARDS */
+
+body.dark-mode .hero-section,
+body.dark-mode .auth-card,
+body.dark-mode .create-post-card,
+body.dark-mode .post-card,
+body.dark-mode .profile-card,
+body.dark-mode .empty-state,
+body.dark-mode .message {
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+
+/* DARK MODE - BORDERS */
+
+body.dark-mode .message,
+body.dark-mode .post-stats,
+body.dark-mode .comment {
+    border-color: #333;
+}
+
+
+/* DARK MODE - INPUTS */
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .auth-form input,
+body.dark-mode .auth-form textarea,
+body.dark-mode .create-post-card textarea,
+body.dark-mode .comment-form input {
+    background: #2a2a2a;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+
+/* DARK MODE - INPUT PLACEHOLDER */
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #999;
+}
+
+
+/* DARK MODE - SECONDARY BUTTON */
+
+body.dark-mode .secondary-button {
+    background: #333;
+    color: #f1f1f1;
+}
+
+
+/* DARK MODE - PRIMARY BUTTON */
+
+body.dark-mode .primary-button {
+    background: #f1f1f1;
+    color: #121212;
+}
+
+
+/* DARK MODE - REGISTER BUTTON */
+
+body.dark-mode .register-nav {
+    background: #f1f1f1;
+    color: #121212;
+}
+
+
+/* DARK MODE - NAV BUTTON */
+
+body.dark-mode .nav-button {
+    color: #f1f1f1;
+}
+
+
+/* DARK MODE - ACTION BUTTONS */
+
+body.dark-mode .action-button {
+    color: #f1f1f1;
+}
+
+
+/* DARK MODE - DELETE BUTTON */
+
+body.dark-mode .delete-button {
+    color: #ff7777;
+}
+
+
+/* DARK MODE - PROFILE PLACEHOLDER */
+
+body.dark-mode .profile-placeholder {
+    background: #333;
+    color: #f1f1f1;
+}
+
+
+/* DARK MODE - LINKS */
+
+body.dark-mode a {
+    color: inherit;
+}
+
+/* ========================================
+   VIDEO POSTS
+   ======================================== */
+
+.post-video {
+    width: 100%;
+    max-height: 500px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: block;
+}
+
+
+/* ========================================
+   PROFILE PHOTO EDIT
+   ======================================== */
+
+.profile-photo-edit {
+    margin-top: 10px;
+}
+
+.current-profile-picture {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.current-profile-picture img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 8px;
+}
+
+.current-profile-picture p {
+    color: #777;
+    font-size: 14px;
+}
+
+.no-profile-picture {
+    color: #777;
+    font-size: 14px;
+    margin: 10px 0 15px;
+}
+
+.profile-file-label {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid #d8dce2;
+    border-radius: 8px;
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+.profile-file-label input {
+    display: none;
+}
+
+
+/* ========================================
+   DARK MODE - PROFILE PHOTO EDIT
+   ======================================== */
+
+body.dark-mode .profile-file-label {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #f1f1f1;
+}
+
+body.dark-mode .current-profile-picture p,
+body.dark-mode .no-profile-picture {
+    color: #b8b8b8;
+}
+
+
+/* ========================================
+   DELETE POST BUTTON
+   ======================================== */
+
+.delete-form {
+    display: block;
+    margin-left: auto;
+}
+
+.delete-button {
+    display: inline-block;
+    padding: 7px 12px;
+    border: 1px solid #dc3545;
+    border-radius: 6px;
+    background: transparent;
+    color: #dc3545;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background: #dc3545;
+    color: white;
+}
